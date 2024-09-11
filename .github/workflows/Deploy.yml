@@ -34,10 +34,18 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+
+      
       - name: Install dependencies
         run: npm install
+      - name: List files in root directory
+        run: |
+          ls -l
       - name: Build
         run: npm run build
+      - name: List files in root directory
+        run: |
+          ls -l
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
@@ -49,3 +57,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
