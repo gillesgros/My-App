@@ -51,7 +51,18 @@ export default defineConfig( ({ mode}) => {
       },
       vue()
     ],
-
+    optimizeDeps: {
+      include: ['vue', 'vue-i18n']
+    },
+    resolve: {
+      //extensions: ['.ts', '.vue'],
+      alias: {
+        // Alias pour les modules non-Esbuild compatibles avec Vite
+        //'@': fileURLToPath(new URL('./src', import.meta.url)),
+        //'vue-i18n': 'vue-i18n/dist/vue-i18n.esm-bundler.js',
+        //'vue': 'vue/dist/vue.esm-bundler.js', 
+      },
+    },
     build: {
       minify: false,
       outDir: publicationDir,
