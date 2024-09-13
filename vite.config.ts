@@ -49,7 +49,15 @@ export default defineConfig( ({ mode}) => {
           return html.replace(/id="datetime">/, `id="datetime">${datetime}`);
         }
       },
-      vue()
+      vue(),
+      //VueDevTools(),
+      vueI18n({
+        include: path.resolve(__dirname, './'+ publicationDir +'/locales/*.json'),
+        compositionOnly: true, 
+        fullInstall: true,
+        allowDynamic: true,
+        runtimeOnly: false
+      }),
     ],
     optimizeDeps: {
       include: ['vue', 'vue-i18n']
