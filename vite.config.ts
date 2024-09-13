@@ -58,6 +58,25 @@ export default defineConfig( ({ mode}) => {
         allowDynamic: true,
         runtimeOnly: false
       }),
+      del({
+        targets: [publicationDir +'/*',
+          '!'+ publicationDir +'/rules',
+          '!'+ publicationDir +'/rules.fr',
+          '!'+ publicationDir +'/rules.de',
+          '!'+ publicationDir +'/img',
+          '!'+ publicationDir +'/favicon.ico',
+          '!'+ publicationDir +'/dominion-content.js',
+          '!'+ publicationDir +'/locales',
+          '!'+ publicationDir +'/locales/??.json',
+          '!'+ publicationDir +'/CNAME',
+          '!'+ publicationDir +'/.nojekyll',
+          '!'+ publicationDir +'/ads.txt'],
+        verbose: false
+      }), 
+       viteStaticCopy({
+         targets: [ { src: 'styles/normalize-v8.css', dest: 'assets/' },
+        ]
+       })
     ],
     optimizeDeps: {
       include: ['vue', 'vue-i18n']
