@@ -32,6 +32,15 @@ export default defineConfig( ({ mode}) => {
     appType: 'spa',
     base: "/My-App",
     publicDir: false, //  Do not use publicDir feature to avoid duplcation of all image and pdf files.
+    /*
+    Do not use publicDir feature to avoid duplcation of all image and pdf files.
+    */
+    define: {
+      'Pkgejson_Version': JSON.stringify(packageJson.version),
+      'Pkgejson_Name': JSON.stringify(packageJson.name),
+      'Pkgejson_URL': JSON.stringify(packageJson.repository.url),
+      'Pkgejson_Date': JSON.stringify(new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'numeric' }))
+    },
     plugins: [
       { name: 'add-datetime',
         transformIndexHtml(html) {
