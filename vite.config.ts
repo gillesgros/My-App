@@ -13,6 +13,20 @@ const publicationDir = 'docs'
 
 // https://vitejs.dev/config/
 export default defineConfig( ({ mode}) => {
+
+  let base_URL = './'
+  if (mode === 'production' && process.env.VITE_BASE_URL) base_URL=process.env.VITE_BASE_URL
+  console.log ('\nbuild mode is', mode)
+  console.log('process.env.VITE_BASE_URL', process.env.VITE_BASE_URL,'\n')
+  console.log('Base_URL', base_URL ,'\n')
+  {
+    //DominionContentGenerate(publicationDir);
+    let ArgGenLocale = "Merge"
+    if (process.argv.slice(3)[0] == "Gen") {
+        ArgGenLocale = "Gen&Merge"
+    }
+    //HandleLocaleGenerateAndMerge(ArgGenLocale, publicationDir)
+  }
   
   return {
     appType: 'spa',
@@ -21,7 +35,7 @@ export default defineConfig( ({ mode}) => {
     plugins: [
       { name: 'add-datetime',
         transformIndexHtml(html) {
-          const datetime = new Date().toDateString();
+          const datetime = new Date().toLocaleTimeString();
           console.log('\nGenerate Date and Time: ', datetime);
           return html.replace(/id="datetime">/, `id="datetime">${datetime}`);
         }
