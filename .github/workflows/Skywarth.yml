@@ -26,8 +26,9 @@ jobs:
       - name: Set environment variable - repository name
         run: |
           echo "VITE_BASE_URL=/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}/" >> $GITHUB_ENV
+          echo "github name is:" ${{ github }} 
           echo "event name is:" ${{ github.event_name }} 
-          echo "event type is:" ${{ github.event.action }}
+          echo "event type is:" ${{ github.event }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
