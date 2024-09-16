@@ -30,7 +30,7 @@ export default defineConfig( ({ mode}) => {
   
   return {
     appType: 'spa',
-    //base: base_URL,
+    base: base_URL,
     publicDir: false, //  Do not use publicDir feature to avoid duplcation of all image and pdf files.
     /*
     Do not use publicDir feature to avoid duplcation of all image and pdf files.
