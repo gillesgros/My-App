@@ -94,8 +94,8 @@ export default defineConfig( ({ mode}) => {
       minify: false,
       outDir: publicationDir,
       emptyOutDir: false,
-  /*     sourcemap: false,
-      chunkSizeWarningLimit: 2000,
+      sourcemap: false,
+/*       chunkSizeWarningLimit: 2000,
       rollupOptions: {
         output: {
           entryFileNames: 'assets/[name]-[hash].js',
