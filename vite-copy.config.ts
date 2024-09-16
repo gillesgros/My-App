@@ -9,15 +9,15 @@ import { del } from '@kineticcafe/rollup-plugin-delete';
 //import { DominionContentGenerate, HandleLocaleGenerateAndMerge } from './plugins/vite-dominion-content';
 
 const devServerPort = 5173
-const publicationDir = 'docs'
+const publicationDir = 'dist'
 
-// https://vitejs.dev/config/
+
 export default defineConfig( ({ mode}) => {
 
   let base_URL = './'
+  if (mode === 'production') base_URL='/Vite-KingdomCreator-New'
   console.log ('\nbuild mode is', mode)
-  console.log('process.env.VITE_GITHUB_BASE_URL', process.env.VITE_GITHUB_BASE_URL,'\n')
-  if (process.env.VITE_GITHUB_BASE_URL) base_URL=process.env.VITE_GITHUB_BASE_URL
+  console.log('process.env.VITE_BASE_URL', process.env.VITE_BASE_URL,'\n')
   console.log('Base_URL', base_URL ,'\n')
   {
     //DominionContentGenerate(publicationDir);
@@ -27,11 +27,11 @@ export default defineConfig( ({ mode}) => {
     }
     //HandleLocaleGenerateAndMerge(ArgGenLocale, publicationDir)
   }
-  
+
   return {
     appType: 'spa',
-    //base: base_URL,
-    publicDir: false, //  Do not use publicDir feature to avoid duplcation of all image and pdf files.
+    publicDir: false,
+    base: base_URL, // Utilise la variable d'environnement si elle est définie,
     /*
     Do not use publicDir feature to avoid duplcation of all image and pdf files.
     */
@@ -44,9 +44,9 @@ export default defineConfig( ({ mode}) => {
     plugins: [
       { name: 'add-datetime',
         transformIndexHtml(html) {
-          const datetime = new Date().toLocaleString('fr-FR', { dateStyle: 'long', timeStyle: 'medium' });
+          const datetime = new Date().toISOString();
           console.log('\nGenerate Date and Time: ', datetime);
-          return html.replace(/id="datetime">/g, `id="datetime">${datetime}`);
+          return html.replace(/id="datetime">/, `id="datetime">${datetime}`);
         }
       },
       vue(),
@@ -76,7 +76,7 @@ export default defineConfig( ({ mode}) => {
        viteStaticCopy({
          targets: [ { src: 'styles/normalize-v8.css', dest: 'assets/' },
         ]
-       })
+       }),
     ],
     optimizeDeps: {
       include: ['vue', 'vue-i18n']
@@ -95,14 +95,14 @@ export default defineConfig( ({ mode}) => {
       outDir: publicationDir,
       emptyOutDir: false,
       sourcemap: false,
-/*       chunkSizeWarningLimit: 2000,
+      chunkSizeWarningLimit: 2000,
       rollupOptions: {
         output: {
           entryFileNames: 'assets/[name]-[hash].js',
           chunkFileNames: 'assets/[name]-[hash].js',
           assetFileNames: 'assets/[name]-[hash][extname]'
         }
-      }, */
+      },
     },
     server: {
       open: '/',

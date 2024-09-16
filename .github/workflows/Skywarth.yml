@@ -37,5 +37,6 @@ jobs:
         uses: skywarth/vite-github-pages-deployer@v1.4.0
         with:
           public_base_path: '/My-App'
+          debug_mode: true
           build_path: './docs'
         id: deploy_to_pages
