@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Set environment variable - repository name
         run: |
-          echo "VITE_BASE_URL=/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}/" >> $GITHUB_ENV
+          echo "VITE_GITHUB_BASE_URL=/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}/" >> $GITHUB_ENV
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,3 +39,6 @@ jobs:
           public_base_path: '/My-App2'
           build_path: './docs'
         id: deploy_to_pages
+      - name: Set environment variable - repository name
+        run: |
+          cat ./docs/index.html
