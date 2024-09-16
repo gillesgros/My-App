@@ -44,9 +44,9 @@ export default defineConfig( ({ mode}) => {
     plugins: [
       { name: 'add-datetime',
         transformIndexHtml(html) {
-          const datetime = new Date().toLocaleTimeString();
+          const datetime = new Date().toLocaleString();
           console.log('\nGenerate Date and Time: ', datetime);
-          return html.replace(/id="datetime">/, `id="datetime">${datetime}`);
+          return html.replace(/id="datetime">/g, `id="datetime">${datetime}`);
         }
       },
       vue(),
