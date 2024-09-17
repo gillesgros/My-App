@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
 
 export function AppCreateRouter(paths: string[], component: any) {
   return createRouter({
-    history: createWebHashHistory('/My-App/'),
+    history: createWebHistory(),
     routes: paths.map(
       path => { return { 
                     path : path,
@@ -18,7 +18,7 @@ interface RouteConfig {
 
 export function AppCreateRouterMultiple(routes: RouteConfig[]) {
   const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory('/My-App/'),
     routes: routes.flatMap(route => route.paths.map(path => ({
       path,
       component: route.component
