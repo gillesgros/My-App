@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, createWebHashHistory } from "vue-router
 
 export function AppCreateRouter(paths: string[], component: any) {
   return createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: paths.map(
       path => { return { 
                     path : path,
@@ -18,7 +18,7 @@ interface RouteConfig {
 
 export function AppCreateRouterMultiple(routes: RouteConfig[]) {
   const router = createRouter({
-    history: createWebHashHistory('/My-App/'),
+    history: createWebHistory('/My-App/'),
     routes: routes.flatMap(route => route.paths.map(path => ({
       path,
       component: route.component
