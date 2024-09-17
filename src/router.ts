@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 export function AppCreateRouter(paths: string[], component: any) {
   return createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory('/My-App/'),
     routes: paths.map(
       path => { return { 
                     path : path,
